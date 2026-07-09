@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ник Меньшов — Менеджер-кит</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prata&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#191310; --soft:#5b524c; --faint:#8b8078;
+    --accent:#c14a28; --accent-d:#9a3c20;
+    --line:#e6ded5; --paper:#fbf8f4; --card:#ffffff;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{ font-family:'Archivo',system-ui,sans-serif; color:var(--ink); background:var(--paper); line-height:1.55; font-size:15px; }
+  .wrap{ max-width:940px; margin:0 auto; padding:0 22px 80px; }
+  a{ color:var(--accent-d); text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding:56px 0 34px; border-bottom:2px solid var(--ink); }
+  .kicker{ font-size:11px; letter-spacing:.32em; text-transform:uppercase; color:var(--soft); }
+  .brand{ font-family:'Prata',serif; font-size:clamp(40px,7vw,68px); line-height:1.02; margin:14px 0 6px; }
+  .brand .jp{ color:var(--accent); font-size:.42em; vertical-align:middle; margin-left:.3em; letter-spacing:.05em; }
+  .role{ font-size:15px; letter-spacing:.06em; color:var(--soft); }
+  .hero-meta{ display:flex; flex-wrap:wrap; gap:8px 26px; margin-top:22px; font-size:13.5px; }
+  .hero-meta b{ color:var(--ink); font-weight:600; }
+  .badges{ display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; }
+  .badge{ font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-d); border:1px solid var(--line); background:var(--card); padding:7px 12px; border-radius:2px; }
+
+  /* ---------- NAV (screen only) ---------- */
+  .toc{ display:flex; flex-wrap:wrap; gap:8px; margin:26px 0 8px; }
+  .toc a{ font-size:12px; letter-spacing:.06em; color:var(--soft); border:1px solid var(--line); padding:6px 11px; border-radius:999px; background:var(--card); }
+  .toc a:hover{ color:var(--accent-d); border-color:var(--accent); text-decoration:none; }
+
+  /* ---------- SECTION ---------- */
+  section{ padding:38px 0 8px; }
+  .sec-head{ display:flex; align-items:baseline; gap:14px; border-bottom:1px solid var(--line); padding-bottom:10px; margin-bottom:22px; }
+  .sec-no{ font-family:'Prata',serif; color:var(--accent); font-size:22px; }
+  h2{ font-family:'Prata',serif; font-weight:400; font-size:clamp(22px,3.4vw,30px); }
+  .sec-note{ margin-left:auto; font-size:12px; color:var(--faint); letter-spacing:.04em; text-align:right; }
+  h3{ font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--accent-d); margin:20px 0 10px; }
+  p{ margin:0 0 12px; max-width:74ch; }
+  .lead{ font-size:16.5px; }
+
+  /* ---------- PRICE ---------- */
+  .price-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:14px; }
+  .price-card{ background:var(--card); border:1px solid var(--line); border-top:3px solid var(--accent); padding:18px 18px 20px; border-radius:3px; }
+  .price-card .fmt{ font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--soft); }
+  .price-card .amt{ font-family:'Prata',serif; font-size:30px; margin:8px 0 4px; }
+  .price-card .amt small{ font-size:14px; color:var(--soft); }
+  .price-card .dur{ font-size:13px; color:var(--faint); }
+  .price-foot{ display:flex; flex-wrap:wrap; gap:10px 26px; margin-top:16px; font-size:13.5px; color:var(--soft); }
+  .price-foot b{ color:var(--ink); }
+
+  /* ---------- RIDER ---------- */
+  .rider{ display:grid; grid-template-columns:1fr 1fr; gap:26px; }
+  .rider ul{ list-style:none; }
+  .rider li{ padding:7px 0; border-bottom:1px solid var(--line); display:flex; gap:9px; font-size:14px; }
+  .rider li::before{ content:"·"; color:var(--accent); font-weight:700; }
+  .rider b{ font-weight:600; }
+  .callout{ background:var(--card); border:1px solid var(--line); border-left:3px solid var(--accent); padding:13px 16px; font-size:13.5px; margin-top:16px; border-radius:0 3px 3px 0; }
+
+  /* ---------- TEAMS FLOW ---------- */
+  .flow{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px; margin:6px 0 4px; counter-reset:step; }
+  .step{ background:var(--card); border:1px solid var(--line); padding:16px; border-radius:3px; position:relative; }
+  .step::before{ counter-increment:step; content:counter(step); position:absolute; top:12px; right:14px; font-family:'Prata',serif; color:var(--accent); opacity:.35; font-size:22px; }
+  .step .st{ font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-d); margin-bottom:6px; }
+  .step p{ font-size:13.5px; margin:0; }
+  .kv{ display:grid; grid-template-columns:auto 1fr; gap:6px 18px; font-size:14px; margin-top:8px; }
+  .kv dt{ color:var(--soft); }
+  .kv dd{ font-weight:500; }
+
+  /* ---------- CONTRACT ---------- */
+  .two-col{ display:grid; grid-template-columns:1fr 1fr; gap:26px; }
+  .facts li{ padding:7px 0; border-bottom:1px solid var(--line); font-size:14px; list-style:none; }
+  .facts b{ font-weight:600; }
+  .req{ background:var(--card); border:1px solid var(--line); padding:16px 18px; border-radius:3px; font-size:13.5px; }
+  .req .r{ display:grid; grid-template-columns:120px 1fr; gap:4px 12px; margin-top:6px; }
+  .req .r span:first-child{ color:var(--soft); }
+  .filelink{ display:inline-flex; align-items:center; gap:8px; margin-top:14px; font-size:13.5px; font-weight:600; border:1px solid var(--accent); color:var(--accent-d); padding:9px 14px; border-radius:3px; }
+
+  /* ---------- CALENDAR ---------- */
+  .cal-frame{ width:100%; height:560px; border:1px solid var(--line); border-radius:4px; background:var(--card); }
+  .cal-links{ display:flex; flex-wrap:wrap; gap:10px; margin:14px 0 4px; }
+  .cal-links a{ font-size:13px; font-weight:600; border:1px solid var(--line); background:var(--card); padding:9px 14px; border-radius:3px; }
+  .cal-links a:hover{ border-color:var(--accent); text-decoration:none; }
+
+  footer.end{ margin-top:48px; padding-top:20px; border-top:2px solid var(--ink); display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; font-size:12.5px; color:var(--soft); letter-spacing:.03em; }
+
+  .noprint-hint{ font-size:12px; color:var(--faint); margin-top:6px; }
+
+  @media (max-width:680px){ .rider,.two-col{ grid-template-columns:1fr; } }
+
+  /* ---------- PRINT ---------- */
+  @media print{
+    @page{ size:A4; margin:14mm 13mm; }
+    body{ background:#fff; font-size:11px; }
+    .wrap{ max-width:none; padding:0; }
+    .toc, .cal-frame, .noprint-hint{ display:none !important; }
+    a{ color:var(--ink); }
+    section{ padding:16px 0 4px; break-inside:avoid; }
+    .hero{ padding:0 0 18px; }
+    .price-card,.step,.req,.callout{ break-inside:avoid; }
+    .cal-print{ display:block !important; }
+  }
+  .cal-print{ display:none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ===== HERO ===== -->
+  <header class="hero">
+    <div class="kicker">Менеджер-кит артиста · внутренний документ</div>
+    <div class="brand">Ник Меньшов <span class="jp">音</span></div>
+    <div class="role">Sound Director · DJ · Москва / International</div>
+    <div class="hero-meta">
+      <span><b>Артист:</b> Никита Меньшов (ИП)</span>
+      <span><b>Telegram:</b> <a href="https://t.me/nickmenshov">@nickmenshov</a></span>
+      <span><b>Тел:</b> +7 910 572‑25‑08</span>
+      <span><b>Email:</b> nick.jackson.kelly@gmail.com</span>
+    </div>
+    <div class="hero-meta">
+      <span><b>Instagram:</b> @nickmenshov</span>
+      <span><b>Канал:</b> <a href="https://t.me/soundslikenick">@soundslikenick</a></span>
+      <span><b>Ответ на заявку:</b> 15–30 минут</span>
+    </div>
+    <div class="badges">
+      <span class="badge">Член жюри Top100 Awards</span>
+      <span class="badge">Top15 Moscow</span>
+      <span class="badge">Sound Director</span>
+      <span class="badge">Инструктор высшей категории · snowsystem.pro</span>
+    </div>
+  </header>
+
+  <nav class="toc">
+    <a href="#landing">01 · Артист / лендинг</a>
+    <a href="#price">02 · Прайс</a>
+    <a href="#rider">03 · Райдер</a>
+    <a href="#teams">04 · КОМАНДЫ DJS</a>
+    <a href="#contract">05 · Договор</a>
+    <a href="#calendar">06 · Календарь занятости</a>
+  </nav>
+  <div class="noprint-hint">Совет: чтобы получить PDF — открой файл в браузере и нажми ⌘P → «Сохранить как PDF» (А4). Оформление уже настроено под печать.</div>
+
+  <!-- ===== 01 LANDING ===== -->
+  <section id="landing">
+    <div class="sec-head"><span class="sec-no">01</span><h2>Артист и лендинг</h2><span class="sec-note">персональный сайт</span></div>
+    <p class="lead">Ник Меньшов — саунд-директор и диджей. Работает по свадьбам, корпоративам и частным вечеринкам; авторский подход к музыкальной драматургии вечера, работа в паре с ведущим по таймингу.</p>
+    <h3>Официальный сайт</h3>
+    <p><a href="https://nikumen.github.io/nick-menshov-landing/">nikumen.github.io/nick-menshov-landing</a> — шоурил, портфолио (видео + фото), сеты/миксы, райдер, календарь занятости и форма брони.</p>
+    <div class="two-col">
+      <div>
+        <h3>Профили и регалии</h3>
+        <ul class="facts">
+          <li><b>Top100 Awards</b> — член жюри · <a href="https://top100awards.ru/jury/menshov">top100awards.ru/jury/menshov</a></li>
+          <li><b>Top15 Moscow</b> — <a href="https://top15moscow.ru/djs/nickmenshov">top15moscow.ru/djs/nickmenshov</a></li>
+          <li><b>Клиенты:</b> премиальные свадьбы, корпоративы, T‑Банк и др.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Каналы связи</h3>
+        <ul class="facts">
+          <li><b>Бронь / переписка:</b> <a href="https://t.me/nickmenshov">t.me/nickmenshov</a></li>
+          <li><b>Телефон согласований:</b> +7 910 572‑25‑08</li>
+          <li><b>Email:</b> nick.jackson.kelly@gmail.com</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 02 PRICE ===== -->
+  <section id="price">
+    <div class="sec-head"><span class="sec-no">02</span><h2>Прайс</h2><span class="sec-note">гонорар артиста, НДС не облагается</span></div>
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="fmt">Свадьба</div>
+        <div class="amt">120 000&nbsp;<small>₽</small></div>
+        <div class="dur">до 7 часов работы</div>
+      </div>
+      <div class="price-card">
+        <div class="fmt">Корпоратив / частное</div>
+        <div class="amt">120 000&nbsp;<small>₽</small></div>
+        <div class="dur">до 6 часов работы</div>
+      </div>
+      <div class="price-card">
+        <div class="fmt">DJ‑set</div>
+        <div class="amt">80 000&nbsp;<small>₽</small></div>
+        <div class="dur">до 2 часов</div>
+      </div>
+      <div class="price-card">
+        <div class="fmt">DJ‑set</div>
+        <div class="amt">100 000&nbsp;<small>₽</small></div>
+        <div class="dur">до 3 часов</div>
+      </div>
+    </div>
+    <div class="price-foot">
+      <span><b>Продление:</b> +20 000 ₽ за каждый последующий час</span>
+      <span><b>Оформление:</b> ИП, работа по договору · <b>налог включён в стоимость</b></span>
+      <span><b>Документооборот:</b> через ЭДО</span>
+      <span><b>Транспорт вне Москвы / перелёт / проживание:</b> по райдеру, сверх гонорара</span>
+    </div>
+    <div class="callout"><b>Как считать менеджеру:</b> базовая ставка фиксируется под формат, сверх лимита часов — по 20 000 ₽/ч. Точная сумма и почасовое продление прописываются в договоре под конкретное мероприятие (пример: в договоре ниже — 6 ч, дополнительный час 20 000 ₽). Финальные условия артист подтверждает в переписке.</div>
+  </section>
+
+  <!-- ===== 03 RIDER ===== -->
+  <section id="rider">
+    <div class="sec-head"><span class="sec-no">03</span><h2>Райдер</h2><span class="sec-note">технический · бытовой · транспорт</span></div>
+    <div class="rider">
+      <div>
+        <h3>Технический — проигрыватели и микшер</h3>
+        <ul>
+          <li>2× <b>Pioneer CDJ‑3000</b></li>
+          <li>1× <b>Pioneer DJM‑A9</b> (при отсутствии — DJM‑900NXS2)</li>
+          <li>Обязательно последнее обновление ПО микшера и проигрывателей</li>
+        </ul>
+        <h3>Звук (PA)</h3>
+        <ul>
+          <li>Предпочтительно: <b>L'Acoustics, Meyer Sound, D&amp;B Audiotechnik, Nexo, Seeburg</b></li>
+        </ul>
+        <h3>Мониторы</h3>
+        <ul>
+          <li>2 напольных монитора слева и справа от диджея</li>
+          <li>Seeburg M3, L'Acoustics HiQ15, D&amp;B M4, Meyer MJF или аналоги (согласовать)</li>
+          <li>В мониторе — весь мастер в том же балансе, что и PA (без кавер‑группы/артистов)</li>
+          <li>Если диджей не на сцене — достаточно 1 монитора</li>
+        </ul>
+        <h3>Рабочее место и электрика</h3>
+        <ul>
+          <li>Стол: высота 90–100 см, 160 × 80–100 см (или сценический станок 1,5 × 0,5)</li>
+          <li>2 удлинителя по 6 розеток на столе</li>
+          <li>Визуальный контакт с ведущим во всех зонах, на дискотеке — желательно сцена</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Бытовой — гримёрная</h3>
+        <ul>
+          <li>Закрывающаяся непроходная гримёрная</li>
+          <li>Стол, стулья, вешалка, зеркало, салфетки</li>
+        </ul>
+        <h3>Питание</h3>
+        <ul>
+          <li>5 бутылок воды без газа (0,5 л) в гримёрной</li>
+          <li>5 бутылок воды без газа (0,5 л) на рабочем месте</li>
+          <li>2 шт. лимонад Lapochka</li>
+          <li>Салаты и блюда по гостевому меню, без рыбы, не фастфуд</li>
+          <li>Еда и напитки — отдельно в гримёрной, не на общем столе</li>
+        </ul>
+        <h3>Транспорт и проживание</h3>
+        <ul>
+          <li>Трансфер до места за пределами Москвы</li>
+          <li>Авиа: эконом, 1 место багажа + Extra/Space, предпочтительно Аэрофлот</li>
+          <li>Такси: Яндекс <b>Комфорт+</b></li>
+          <li>Отель от <b>4★</b>, номер улучшенной категории, двуспальная кровать, желательно с завтраком (или хорошие апартаменты)</li>
+        </ul>
+        <div class="callout">Райдер содержит минимальные требования к организатору. Оборудование согласуется заранее по телефону <b>+7 910 572‑25‑08</b> (Никита).</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 04 TEAMS ===== -->
+  <section id="teams">
+    <div class="sec-head"><span class="sec-no">04</span><h2>Проект «КОМАНДЫ DJS»</h2><span class="sec-note">интенсив с менторством</span></div>
+    <p class="lead">Платный обучающий интенсив: месяц реальной работы под кураторством практикующих диджеев. Ник Меньшов — один из трёх кураторов.</p>
+    <div class="two-col">
+      <div>
+        <h3>Логика проекта</h3>
+        <ul class="facts">
+          <li><b>Формат:</b> интенсив «Это не курс. Это месяц реальной работы»</li>
+          <li><b>Кураторы:</b> Никита Меньшов, Никита Соболь (победитель Wedding Awards 2024), Сергей Донских</li>
+          <li><b>Оффер:</b> 3 диджея · 3 команды · 7 заданий · вкус, библиотека, почерк за пультом</li>
+          <li><b>Стоимость участия:</b> 15 000 ₽</li>
+          <li><b>Старт:</b> 15 июля · чуть больше месяца плотной работы</li>
+          <li><b>Сайт:</b> <a href="https://nikumen.github.io/komanda-djs/">nikumen.github.io/komanda-djs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Операционная схема</h3>
+        <dl class="kv">
+          <dt>Заявки</dt><dd>форма на сайте → Telegram‑бот <b>@TEAMDJSBOT</b></dd>
+          <dt>Оплата</dt><dd>QR СБП, 15 000 ₽, чек присылают боту</dd>
+          <dt>Подтверждение</dt><dd>кураторы вручную (полуавтомат, антифрод)</dd>
+          <dt>Учёт</dt><dd>Google Sheets (статусы заявок)</dd>
+          <dt>Доступ</dt><dd>одноразовый инвайт в общий чат участников</dd>
+          <dt>Напоминания</dt><dd>бот сам пингует по имени тех, кто не оплатил</dd>
+        </dl>
+      </div>
+    </div>
+    <h3>Путь участника</h3>
+    <div class="flow">
+      <div class="step"><div class="st">Заявка</div><p>человек оставляет заявку на сайте, попадает в бота</p></div>
+      <div class="step"><div class="st">Оплата</div><p>бот присылает QR СБП и текст; участник шлёт чек</p></div>
+      <div class="step"><div class="st">Проверка</div><p>чек уходит кураторам, один жмёт «Оплата подтверждена»</p></div>
+      <div class="step"><div class="st">Доступ</div><p>бот выдаёт одноразовый инвайт в общий чат · старт заданий</p></div>
+    </div>
+  </section>
+
+  <!-- ===== 05 CONTRACT ===== -->
+  <section id="contract">
+    <div class="sec-head"><span class="sec-no">05</span><h2>Договор для работы</h2><span class="sec-note">шаблон · ИП Меньшов Н. В.</span></div>
+    <p class="lead">Договор оказания услуг музыкального сопровождения мероприятия. Заключается от ИП артиста; ниже — ключевые пункты для менеджера. Полный файл приложен.</p>
+    <div class="two-col">
+      <div>
+        <h3>Ключевые условия</h3>
+        <ul class="facts">
+          <li><b>Предмет:</b> музыкальное сопровождение мероприятия, лично артистом</li>
+          <li><b>Оплата:</b> обычно 50% до мероприятия + 50% в течение 7 дней после (перевод или наличные)</li>
+          <li><b>Продление:</b> свыше согласованных часов — 20 000 ₽/час</li>
+          <li><b>Налог:</b> включён в стоимость услуг; сумма выплачивается без вычетов, банковская/агентская комиссия — за счёт заказчика сверху</li>
+          <li><b>Документооборот:</b> электронный (ЭДО)</li>
+          <li><b>Плейлист:</b> музыкальная анкета за 5 дней до события, заказчик заполняет за 3 дня</li>
+          <li><b>Доступ на площадку:</b> не менее чем за 2 часа до старта</li>
+          <li><b>Вне Москвы:</b> трансфер / авиа / виза — за счёт заказчика (по райдеру)</li>
+          <li><b>Просрочка оплаты:</b> неустойка 0,1% в день</li>
+          <li><b>Приёмка:</b> акт; молчание 3 раб. дня = подписан</li>
+          <li><b>Конфиденциальность:</b> заказчик не раскрывает факт и условия договора</li>
+          <li><b>Споры:</b> досудебная претензия (ответ 10 раб. дней), далее суд РФ</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Реквизиты исполнителя</h3>
+        <div class="req">
+          <div><b>ИП Меньшов Никита Владиславович</b></div>
+          <div class="r"><span>ИНН</span><span>621303459926</span></div>
+          <div class="r"><span>ОГРНИП</span><span>317623400041134</span></div>
+          <div class="r"><span>Банк</span><span>АО «ТБанк»</span></div>
+          <div class="r"><span>Р/с</span><span>40802810300000276812</span></div>
+          <div class="r"><span>К/с</span><span>30101810145250000974</span></div>
+          <div class="r"><span>БИК</span><span>044525974</span></div>
+          <div class="r"><span>Тел</span><span>+7 910 572‑25‑08</span></div>
+          <div class="r"><span>Email</span><span>nick.jackson.kelly@gmail.com</span></div>
+        </div>
+        <a class="filelink" href="dogovor-blank.pdf" target="_blank">⬇︎ Договор — бланк (PDF)</a>
+        <div class="noprint-hint" style="margin-top:10px">Бланк договора с данными артиста; поля Заказчика и специфика мероприятия — плейсхолдеры под заполнение. Приложения внутри: №1 — план/тайминг, №2 — технический райдер, №3 — бытовой райдер. Документооборот — через ЭДО.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 06 CALENDAR ===== -->
+  <section id="calendar">
+    <div class="sec-head"><span class="sec-no">06</span><h2>Календарь занятости</h2><span class="sec-note">Google Calendar</span></div>
+    <p>Занятые даты артиста ведутся в Google Calendar. Ниже — живой календарь (виден при открытии файла в браузере) и прямые ссылки для менеджера.</p>
+    <div class="cal-links">
+      <a href="https://calendar.google.com/calendar/u/0/embed?src=nick.jackson.kelly@gmail.com&ctz=Europe/Moscow" target="_blank">Открыть календарь в новой вкладке ↗</a>
+      <a href="https://calendar.google.com/calendar/u/0/r?cid=nick.jackson.kelly@gmail.com" target="_blank">Добавить в свой Google Calendar +</a>
+      <a href="https://nikumen.github.io/nick-menshov-landing/#book" target="_blank">Календарь брони на сайте ↗</a>
+    </div>
+    <iframe class="cal-frame"
+      src="https://calendar.google.com/calendar/embed?src=nick.jackson.kelly%40gmail.com&ctz=Europe%2FMoscow&mode=MONTH&wkst=2&bgcolor=%23ffffff"
+      title="Календарь занятости Ник Меньшов" loading="lazy"></iframe>
+    <div class="cal-print"><p><b>Ссылка на календарь:</b> calendar.google.com/calendar/u/0/embed?src=nick.jackson.kelly@gmail.com</p></div>
+    <div class="noprint-hint">Если календарь не отображается — значит он ещё не открыт публично: попросить артиста в настройках календаря включить «Сделать общедоступным» и прислать ссылку общего доступа.</div>
+  </section>
+
+  <footer class="end">
+    <span>Ник Меньшов · Sound Director · DJ · +7 910 572‑25‑08 · @nickmenshov</span>
+    <span>Менеджер-кит · внутренний документ · обновлён 09.07.2026</span>
+  </footer>
+
+</div>
+</body>
+</html>
